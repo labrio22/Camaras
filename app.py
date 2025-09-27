@@ -51,6 +51,15 @@ def split_video(input_path, max_size_mb=200):
     return output_files
 
 def analizar_video(video_path, start_time_str):
+    import shutil
+
+    # Limpia carpeta y crea de nuevo para borrar eventos previos
+    if os.path.exists("detected_events"):
+        shutil.rmtree("detected_events")
+    os.makedirs("detected_events", exist_ok=True)
+
+    # Resto de tu código sigue acá...
+
     model = YOLO("yolov8n.pt")
     output_dir = "detected_events"
     os.makedirs(output_dir, exist_ok=True)
